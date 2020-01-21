@@ -30,9 +30,13 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements/dev.txt
+      # - run:
+      #     name: setup Heroku
+      #     command: bash .circleci/setup-heroku.sh
       - run:
-          name: setup Heroku
-          command: bash .circleci/setup-heroku.sh
+        command: |
+          . venv/bin/activate
+          python manage.py runserver
       - save_cache:
           key: deps2-{{ .Branch }}-{{ checksum "requirements/dev.txt" }}
           paths:
