@@ -34,9 +34,9 @@ jobs:
       #     name: setup Heroku
       #     command: bash .circleci/setup-heroku.sh
       - run:
-        command: |
-          . venv/bin/activate
-          python manage.py runserver
+          command: |
+            . venv/bin/activate
+            python manage.py runserver
       - save_cache:
           key: deps2-{{ .Branch }}-{{ checksum "requirements/dev.txt" }}
           paths:
